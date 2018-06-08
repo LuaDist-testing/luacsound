@@ -1,0 +1,4 @@
+: foreach *.lua |> lua %f > %o |> %B.csd
+: foreach *.csd |> csound %f > %o |> %B.aiff
+: foreach *.aiff |> sox %f -b 16 %o norm -3 |> %B_norm.aiff
+: foreach *_norm.aiff |> oggenc -o %o %f |> %g.ogg
